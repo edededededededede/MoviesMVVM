@@ -55,8 +55,13 @@ extension ViewController: UITableViewDelegate {
     }
 
     func tableView(_: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let newVC = NewViewController()
-        newVC.id = viewModel.results?[indexPath.row].id
+        let networkService = MovieAPIService()
+        let newVC = Detail()
+        let presenterSecondVC = DetailPresenter(
+            view: newVC,
+            networkService: networkService, id: viewModel.results?[indexPath.row].id ?? 0
+        )
+        newVC.presenter = presenterSecondVC
         navigationController?.pushViewController(newVC, animated: true)
     }
 }
