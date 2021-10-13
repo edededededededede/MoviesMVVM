@@ -1,9 +1,9 @@
-// Detail.swift
+// DetailViewController.swift
 // Copyright © RoadMap. All rights reserved.
 
 import UIKit
 
-final class Detail: UIViewController {
+final class DetailViewController: UIViewController {
     var presenter: DetailViewPresenterProtocol?
 
     // MARK: - Private Properties
@@ -30,13 +30,13 @@ final class Detail: UIViewController {
     }
 }
 
-extension Detail: UITableViewDelegate {
+extension DetailViewController: UITableViewDelegate {
     func tableView(_: UITableView, heightForRowAt _: IndexPath) -> CGFloat {
         800
     }
 }
 
-extension Detail: UITableViewDataSource {
+extension DetailViewController: UITableViewDataSource {
     func tableView(_: UITableView, numberOfRowsInSection _: Int) -> Int {
         1
     }
@@ -51,7 +51,7 @@ extension Detail: UITableViewDataSource {
     }
 }
 
-extension Detail: DetailViewProtocol {
+extension DetailViewController: DetailViewProtocol {
     func failure(error: Error) {
         print(error.localizedDescription)
     }

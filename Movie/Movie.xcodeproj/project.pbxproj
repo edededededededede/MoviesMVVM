@@ -15,11 +15,12 @@
 		5C25970626AED3CA00F801BB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5C25970426AED3CA00F801BB /* LaunchScreen.storyboard */; };
 		5C3E20C726B1CA50001D834C /* Movies.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C3E20C626B1CA50001D834C /* Movies.swift */; };
 		5C3E20C926B1D8B1001D834C /* MyTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C3E20C826B1D8B1001D834C /* MyTableViewCell.swift */; };
-		5C3E20CB26B282B5001D834C /* Detail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C3E20CA26B282B5001D834C /* Detail.swift */; };
+		5C3E20CB26B282B5001D834C /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C3E20CA26B282B5001D834C /* DetailViewController.swift */; };
 		5C3E20CD26B326B7001D834C /* InfoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C3E20CC26B326B7001D834C /* InfoTableViewCell.swift */; };
 		5CC83C942715B0370047CC46 /* MainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CC83C932715B0370047CC46 /* MainViewModel.swift */; };
 		5CC83CBA2716D9270047CC46 /* DetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CC83CB92716D9270047CC46 /* DetailViewModel.swift */; };
 		5CC83CBC2716DFE60047CC46 /* MovieAPIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CC83CBB2716DFE60047CC46 /* MovieAPIService.swift */; };
+		5CC83CBF271763DE0047CC46 /* ImageAPIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CC83CBE271763DE0047CC46 /* ImageAPIService.swift */; };
 		5CD1478426B41D5400F57B12 /* Details.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CD1478326B41D5400F57B12 /* Details.swift */; };
 /* End PBXBuildFile section */
 
@@ -34,11 +35,12 @@
 		5C25970726AED3CA00F801BB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5C3E20C626B1CA50001D834C /* Movies.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Movies.swift; sourceTree = "<group>"; };
 		5C3E20C826B1D8B1001D834C /* MyTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyTableViewCell.swift; sourceTree = "<group>"; };
-		5C3E20CA26B282B5001D834C /* Detail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Detail.swift; sourceTree = "<group>"; };
+		5C3E20CA26B282B5001D834C /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		5C3E20CC26B326B7001D834C /* InfoTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoTableViewCell.swift; sourceTree = "<group>"; };
 		5CC83C932715B0370047CC46 /* MainViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewModel.swift; sourceTree = "<group>"; };
 		5CC83CB92716D9270047CC46 /* DetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewModel.swift; sourceTree = "<group>"; };
 		5CC83CBB2716DFE60047CC46 /* MovieAPIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieAPIService.swift; sourceTree = "<group>"; };
+		5CC83CBE271763DE0047CC46 /* ImageAPIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageAPIService.swift; sourceTree = "<group>"; };
 		5CD1478326B41D5400F57B12 /* Details.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Details.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -133,7 +135,7 @@
 		5CC83CB62716D8360047CC46 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				5C3E20CA26B282B5001D834C /* Detail.swift */,
+				5C3E20CA26B282B5001D834C /* DetailViewController.swift */,
 				5C3E20CC26B326B7001D834C /* InfoTableViewCell.swift */,
 			);
 			path = View;
@@ -159,6 +161,7 @@
 			isa = PBXGroup;
 			children = (
 				5CC83CBB2716DFE60047CC46 /* MovieAPIService.swift */,
+				5CC83CBE271763DE0047CC46 /* ImageAPIService.swift */,
 			);
 			path = APIService;
 			sourceTree = "<group>";
@@ -283,7 +286,8 @@
 				5C3E20C726B1CA50001D834C /* Movies.swift in Sources */,
 				5CC83CBA2716D9270047CC46 /* DetailViewModel.swift in Sources */,
 				5CC83C942715B0370047CC46 /* MainViewModel.swift in Sources */,
-				5C3E20CB26B282B5001D834C /* Detail.swift in Sources */,
+				5C3E20CB26B282B5001D834C /* DetailViewController.swift in Sources */,
+				5CC83CBF271763DE0047CC46 /* ImageAPIService.swift in Sources */,
 				5CC83CBC2716DFE60047CC46 /* MovieAPIService.swift in Sources */,
 				5C3E20CD26B326B7001D834C /* InfoTableViewCell.swift in Sources */,
 				5C3E20C926B1D8B1001D834C /* MyTableViewCell.swift in Sources */,
