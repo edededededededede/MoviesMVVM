@@ -3,45 +3,34 @@
 
 import Foundation
 
-protocol DetailViewProtocol: AnyObject {
-    func reloadData()
-    func failure(error: Error)
-}
-
-protocol DetailViewPresenterProtocol: AnyObject {
+protocol DetailViewModelProtocol: AnyObject {
     var details: Details? { get set }
-    var id: Int { get }
+    var updateViewData: (() -> ())? { get set }
     func getDetail(id: Int)
 }
 
-final class DetailPresenter: DetailViewPresenterProtocol {
+final class DetailViewModel: DetailViewModelProtocol {
+    var updateViewData: (() -> ())?
     var details: Details?
-
     var id: Int
-    let view: DetailViewProtocol?
-    let networkService: NetworkServiceProtocol!
+    let networkService: NetworkServiceProtocol?
 
-    init(
-        view: DetailViewProtocol,
-        networkService: MovieAPIService,
-        id: Int
-    ) {
-        self.view = view
+    init(networkService: MovieAPIService, id: Int) {
         self.networkService = networkService
         self.id = id
         getDetail(id: id)
     }
 
     func getDetail(id: Int) {
-        networkService.getDetails(id: id) { [weak self] result in
+        networkService?.getDetails(id: id) { [weak self] result in
             guard let self = self else { return }
             DispatchQueue.main.async {
                 switch result {
                 case let .success(data):
                     self.details = data
-                    self.view?.reloadData()
+                    self.updateViewData?()
                 case let .failure(error):
-                    self.view?.failure(error: error)
+                    print("error")
                 }
             }
         }

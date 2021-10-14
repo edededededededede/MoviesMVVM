@@ -9,7 +9,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     func scene(_ scene: UIScene, willConnectTo _: UISceneSession, options _: UIScene.ConnectionOptions) {
         let firstVC = ViewController()
-        let mainViewModel = MainViewModel()
+        let networkService = MovieAPIService()
+        let mainViewModel = MainViewModel(networkService: networkService)
         firstVC.viewModel = mainViewModel
         let firstNavController = UINavigationController(rootViewController: firstVC)
         window?.rootViewController = firstNavController

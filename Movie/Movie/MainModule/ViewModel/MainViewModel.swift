@@ -7,26 +7,34 @@ protocol MoviesViewModelProtocol: AnyObject {
     var results: [Results]? { get set }
     var updateViewData: (() -> ())? { get set }
     func fetchData()
+    var networkService: NetworkServiceProtocol? { get set }
 }
 
 final class MainViewModel: MoviesViewModelProtocol {
+    var networkService: NetworkServiceProtocol?
+    var movies: Movies?
+
     var results: [Results]?
     var updateViewData: (() -> ())?
 
+    init(networkService: NetworkServiceProtocol) {
+        self.networkService = networkService
+        fetchData()
+    }
+
     func fetchData() {
-        let jsonUrlString =
-            "https://api.themoviedb.org/3/movie/popular?api_key=1ee34276a75d38c0cae118c698cdcfdf&language=ru-RU"
-        guard let url = URL(string: jsonUrlString) else { return }
-        URLSession.shared.dataTask(with: url) { data, _, _ in
-            guard let data = data else { return }
-            do {
-                let decoder = JSONDecoder()
-                guard let movies = try? decoder.decode(Movies.self, from: data) else { return }
-                self.results = movies.results
-                self.updateViewData?()
-            } catch {
-                print("Error")
+        networkService = MovieAPIService()
+        networkService?.getMovies { [weak self] result in
+            guard let self = self else { return }
+            DispatchQueue.main.async {
+                switch result {
+                case let .success(movies):
+                    self.results = movies
+                    self.updateViewData?()
+                case let .failure(error):
+                    print(error)
+                }
             }
-        }.resume()
+        }
     }
 }

@@ -25,7 +25,6 @@ final class ViewController: UIViewController {
     }
 
     func updateView() {
-        viewModel.fetchData()
         viewModel.updateViewData = { [weak self] in
             DispatchQueue.main.async {
                 self?.myTableView.reloadData()
@@ -55,13 +54,11 @@ extension ViewController: UITableViewDelegate {
     }
 
     func tableView(_: UITableView, didSelectRowAt indexPath: IndexPath) {
+        guard let id = viewModel.results?[indexPath.row].id else { return }
         let networkService = MovieAPIService()
         let newVC = DetailViewController()
-        let presenterSecondVC = DetailPresenter(
-            view: newVC,
-            networkService: networkService, id: viewModel.results?[indexPath.row].id ?? 0
-        )
-        newVC.presenter = presenterSecondVC
+        let detailViewModel = DetailViewModel(networkService: networkService, id: id)
+        newVC.installViewModel(viewModel: detailViewModel)
         navigationController?.pushViewController(newVC, animated: true)
     }
 }

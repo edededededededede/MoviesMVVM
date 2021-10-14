@@ -4,7 +4,7 @@
 import UIKit
 
 final class DetailViewController: UIViewController {
-    var presenter: DetailViewPresenterProtocol?
+    var viewModel: DetailViewModelProtocol?
 
     // MARK: - Private Properties
 
@@ -15,7 +15,19 @@ final class DetailViewController: UIViewController {
         super.viewDidLoad()
         view.backgroundColor = .white
         createTableView()
-        myTableView.accessibilityIdentifier = "DetailsTableView"
+        updateView()
+    }
+
+    // MARK: - Methods
+
+    func updateView() {
+        viewModel?.updateViewData = { [weak self] in
+            self?.myTableView.reloadData()
+        }
+    }
+
+    func installViewModel(viewModel: DetailViewModelProtocol) {
+        self.viewModel = viewModel
     }
 
     // MARK: - Private Methods
@@ -45,20 +57,8 @@ extension DetailViewController: UITableViewDataSource {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: identifire) as? InfoTableViewCell
         else { return UITableViewCell() }
         cell.backgroundColor = .white
-        guard let res = presenter?.details else { return UITableViewCell() }
+        guard let res = viewModel?.details else { return UITableViewCell() }
         cell.configurDetails(movie2: res)
         return cell
-    }
-}
-
-extension DetailViewController: DetailViewProtocol {
-    func failure(error: Error) {
-        print(error.localizedDescription)
-    }
-
-    func reloadData() {
-        DispatchQueue.main.async {
-            self.myTableView.reloadData()
-        }
     }
 }
