@@ -32,9 +32,19 @@ final class ViewController: UIViewController {
         }
     }
 
-    func installViewModel(viewModel: MoviesViewModelProtocol) {
+    init(viewModel: MoviesViewModelProtocol) {
         self.viewModel = viewModel
+        super.init(nibName: nil, bundle: nil)
     }
+
+    @available(*, unavailable)
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+
+//    func installViewModel(viewModel: MoviesViewModelProtocol) {
+//        self.viewModel = viewModel
+//    }
 
     // MARK: - create Private Medoth
 

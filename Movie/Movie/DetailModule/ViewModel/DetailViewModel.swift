@@ -6,10 +6,12 @@ import Foundation
 protocol DetailViewModelProtocol: AnyObject {
     var details: Details? { get set }
     var updateViewData: (() -> ())? { get set }
+    var showErrorAlert: StringHandler? { get set }
     func getDetail(id: Int)
 }
 
 final class DetailViewModel: DetailViewModelProtocol {
+    var showErrorAlert: StringHandler?
     var updateViewData: (() -> ())?
     var details: Details?
     var id: Int
@@ -30,7 +32,7 @@ final class DetailViewModel: DetailViewModelProtocol {
                     self.details = data
                     self.updateViewData?()
                 case let .failure(error):
-                    print("error")
+                    self.showErrorAlert?(error.localizedDescription)
                 }
             }
         }

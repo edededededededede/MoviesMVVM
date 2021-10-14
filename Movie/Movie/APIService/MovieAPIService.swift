@@ -20,7 +20,7 @@ final class MovieAPIService: NetworkServiceProtocol {
                 let movies = try decoder.decode(Movies.self, from: data)
                 complition(.success(movies.results))
             } catch {
-                print("Error")
+                complition(.failure(error))
             }
         }.resume()
     }
@@ -36,7 +36,7 @@ final class MovieAPIService: NetworkServiceProtocol {
                 let result2 = try decoder.decode(Details.self, from: data)
                 complition(.success(result2))
             } catch {
-                print(error.localizedDescription)
+                complition(.failure(error))
             }
         }.resume()
     }

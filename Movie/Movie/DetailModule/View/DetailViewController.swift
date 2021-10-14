@@ -15,14 +15,17 @@ final class DetailViewController: UIViewController {
         super.viewDidLoad()
         view.backgroundColor = .white
         createTableView()
-        updateView()
+        setupModel()
     }
 
     // MARK: - Methods
 
-    func updateView() {
+    func setupModel() {
         viewModel?.updateViewData = { [weak self] in
             self?.myTableView.reloadData()
+        }
+        viewModel?.showErrorAlert = { [weak self] error in
+            self?.showAlert(alertText: "error", alertMessage: error)
         }
     }
 
