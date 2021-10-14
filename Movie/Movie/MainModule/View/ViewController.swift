@@ -25,7 +25,6 @@ final class ViewController: UIViewController {
     }
 
     func updateView() {
-        viewModel.fetchData()
         viewModel.updateViewData = { [weak self] in
             DispatchQueue.main.async {
                 self?.myTableView.reloadData()
@@ -33,9 +32,19 @@ final class ViewController: UIViewController {
         }
     }
 
-    func installViewModel(viewModel: MoviesViewModelProtocol) {
+    init(viewModel: MoviesViewModelProtocol) {
         self.viewModel = viewModel
+        super.init(nibName: nil, bundle: nil)
     }
+
+    @available(*, unavailable)
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+
+//    func installViewModel(viewModel: MoviesViewModelProtocol) {
+//        self.viewModel = viewModel
+//    }
 
     // MARK: - create Private Medoth
 
@@ -55,8 +64,11 @@ extension ViewController: UITableViewDelegate {
     }
 
     func tableView(_: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let newVC = NewViewController()
-        newVC.id = viewModel.results?[indexPath.row].id
+        guard let id = viewModel.results?[indexPath.row].id else { return }
+        let networkService = MovieAPIService()
+        let newVC = DetailViewController()
+        let detailViewModel = DetailViewModel(networkService: networkService, id: id)
+        newVC.installViewModel(viewModel: detailViewModel)
         navigationController?.pushViewController(newVC, animated: true)
     }
 }

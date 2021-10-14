@@ -10,6 +10,7 @@ final class MyTableViewCell: UITableViewCell {
     private let ratingLabel = UILabel()
     private let movieImageView = UIImageView()
     private let overviewLabel = UILabel()
+    private let imageService = ImageAPIService()
 
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -77,8 +78,10 @@ final class MyTableViewCell: UITableViewCell {
             let posterPath = "https://image.tmdb.org/t/p/w500\(movie.posterPath ?? "")"
             guard let url = URL(string: posterPath) else { return }
             guard let imageData = try? Data(contentsOf: url) else { return }
-            DispatchQueue.main.async {
-                self.movieImageView.image = UIImage(data: imageData)
+            self.imageService.getPhoto(url: url) { [weak self] image in
+                DispatchQueue.main.async {
+                    self?.movieImageView.image = UIImage(data: imageData)
+                }
             }
         }
     }

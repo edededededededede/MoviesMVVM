@@ -9,6 +9,7 @@ final class InfoTableViewCell: UITableViewCell {
     private let myImageView = UIImageView()
     private let myTitileLabel = UILabel()
     private let descriptionLabel = UILabel()
+    private let imageService = ImageAPIService()
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
@@ -66,8 +67,10 @@ final class InfoTableViewCell: UITableViewCell {
             let posterPath = "https://image.tmdb.org/t/p/w500\(movie2.posterPath ?? "")"
             guard let url = URL(string: posterPath) else { return }
             guard let imageData = try? Data(contentsOf: url) else { return }
-            DispatchQueue.main.async {
-                self.myImageView.image = UIImage(data: imageData)
+            self.imageService.getPhoto(url: url) { [weak self] image in
+                DispatchQueue.main.async {
+                    self?.myImageView.image = UIImage(data: imageData)
+                }
             }
         }
     }
