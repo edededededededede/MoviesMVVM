@@ -17,8 +17,8 @@ final class MainViewModel: MoviesViewModelProtocol {
     var results: [Results]?
     var updateViewData: (() -> ())?
 
-    init(networkService: NetworkServiceProtocol) {
-        self.networkService = networkService
+    init(networkAPIService: NetworkServiceProtocol) {
+        networkService = networkAPIService
         fetchData()
     }
 

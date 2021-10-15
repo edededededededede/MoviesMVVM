@@ -1,15 +1,16 @@
-// ViewController.swift
+// MainViewController.swift
 // Copyright © RoadMap. All rights reserved.
 
 import UIKit
 
 /// ViewController
-final class ViewController: UIViewController {
+final class MainViewController: UIViewController {
     // MARK: - Private Properties
 
     var viewModel: MoviesViewModelProtocol!
+    var onSelectID: IntHandler?
 
-    private var myTableView = UITableView()
+    private var tableView = UITableView()
     private let identifire = "MyCell"
     private var id: Int?
     private var titleLabel: String?
@@ -27,38 +28,28 @@ final class ViewController: UIViewController {
     func updateView() {
         viewModel.updateViewData = { [weak self] in
             DispatchQueue.main.async {
-                self?.myTableView.reloadData()
+                self?.tableView.reloadData()
             }
         }
     }
 
-    init(viewModel: MoviesViewModelProtocol) {
+    func installViewModel(viewModel: MoviesViewModelProtocol) {
         self.viewModel = viewModel
-        super.init(nibName: nil, bundle: nil)
     }
-
-    @available(*, unavailable)
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-
-//    func installViewModel(viewModel: MoviesViewModelProtocol) {
-//        self.viewModel = viewModel
-//    }
 
     // MARK: - create Private Medoth
 
     private func createTableView() {
-        myTableView = UITableView(frame: view.bounds, style: .plain)
-        myTableView.register(MyTableViewCell.self, forCellReuseIdentifier: identifire)
-        myTableView.delegate = self
-        myTableView.dataSource = self
-        myTableView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-        view.addSubview(myTableView)
+        tableView = UITableView(frame: view.bounds, style: .plain)
+        tableView.register(MyTableViewCell.self, forCellReuseIdentifier: identifire)
+        tableView.delegate = self
+        tableView.dataSource = self
+        tableView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        view.addSubview(tableView)
     }
 }
 
-extension ViewController: UITableViewDelegate {
+extension MainViewController: UITableViewDelegate {
     func tableView(_: UITableView, heightForRowAt _: IndexPath) -> CGFloat {
         200
     }
@@ -69,11 +60,13 @@ extension ViewController: UITableViewDelegate {
         let newVC = DetailViewController()
         let detailViewModel = DetailViewModel(networkService: networkService, id: id)
         newVC.installViewModel(viewModel: detailViewModel)
-        navigationController?.pushViewController(newVC, animated: true)
+        let assembly = Assambly()
+        navigationController?.pushViewController(assembly.createDetailsView(id: id), animated: true)
+        onSelectID?(id)
     }
 }
 
-extension ViewController: UITableViewDataSource {
+extension MainViewController: UITableViewDataSource {
     func tableView(_: UITableView, numberOfRowsInSection _: Int) -> Int {
         viewModel.results?.count ?? 0
     }
