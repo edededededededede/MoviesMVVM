@@ -67,7 +67,7 @@ final class InfoTableViewCell: UITableViewCell {
             let posterPath = "https://image.tmdb.org/t/p/w500\(movie2.posterPath ?? "")"
             guard let url = URL(string: posterPath) else { return }
             guard let imageData = try? Data(contentsOf: url) else { return }
-            self.imageService.getPhoto(url: url) { [weak self] image in
+            self.imageService.getPhoto(url: url) { [weak self] _ in
                 DispatchQueue.main.async {
                     self?.myImageView.image = UIImage(data: imageData)
                 }

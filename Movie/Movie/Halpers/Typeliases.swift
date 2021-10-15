@@ -4,3 +4,5 @@
 import Foundation
 
 typealias StringHandler = (String) -> Void
+typealias IntHandler = ((Int) -> Void)
+typealias VoidHendler = (() -> ())
