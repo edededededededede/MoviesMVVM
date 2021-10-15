@@ -10,7 +10,7 @@ final class MainViewController: UIViewController {
     var viewModel: MoviesViewModelProtocol!
     var onSelectID: IntHandler?
 
-    private var myTableView = UITableView()
+    private var tableView = UITableView()
     private let identifire = "MyCell"
     private var id: Int?
     private var titleLabel: String?
@@ -28,20 +28,10 @@ final class MainViewController: UIViewController {
     func updateView() {
         viewModel.updateViewData = { [weak self] in
             DispatchQueue.main.async {
-                self?.myTableView.reloadData()
+                self?.tableView.reloadData()
             }
         }
     }
-
-//    init(viewModel: MoviesViewModelProtocol) {
-//        self.viewModel = viewModel
-//        super.init(nibName: nil, bundle: nil)
-//    }
-//
-//    @available(*, unavailable)
-//    required init?(coder: NSCoder) {
-//        fatalError("init(coder:) has not been implemented")
-//    }
 
     func installViewModel(viewModel: MoviesViewModelProtocol) {
         self.viewModel = viewModel
@@ -50,12 +40,12 @@ final class MainViewController: UIViewController {
     // MARK: - create Private Medoth
 
     private func createTableView() {
-        myTableView = UITableView(frame: view.bounds, style: .plain)
-        myTableView.register(MyTableViewCell.self, forCellReuseIdentifier: identifire)
-        myTableView.delegate = self
-        myTableView.dataSource = self
-        myTableView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-        view.addSubview(myTableView)
+        tableView = UITableView(frame: view.bounds, style: .plain)
+        tableView.register(MyTableViewCell.self, forCellReuseIdentifier: identifire)
+        tableView.delegate = self
+        tableView.dataSource = self
+        tableView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        view.addSubview(tableView)
     }
 }
 
@@ -71,7 +61,7 @@ extension MainViewController: UITableViewDelegate {
         let detailViewModel = DetailViewModel(networkService: networkService, id: id)
         newVC.installViewModel(viewModel: detailViewModel)
         let assembly = Assambly()
-        navigationController?.pushViewController(assembly.createDetailsViewModel(id: id), animated: true)
+        navigationController?.pushViewController(assembly.createDetailsView(id: id), animated: true)
         onSelectID?(id)
     }
 }

@@ -5,20 +5,20 @@ import Foundation
 import UIKit
 
 protocol AssamblyProtocol {
-    func createMenuViewModel() -> UIViewController
-    func createDetailsViewModel(id: Int) -> UIViewController
+    func createMenuView() -> UIViewController
+    func createDetailsView(id: Int) -> UIViewController
 }
 
 final class Assambly: AssamblyProtocol {
-    func createMenuViewModel() -> UIViewController {
+    func createMenuView() -> UIViewController {
         let mainVC = MainViewController()
         let movieAPIService = MovieAPIService()
-        let menuViewModel = MainViewModel(networkService: movieAPIService)
+        let menuViewModel = MainViewModel(networkAPIService: movieAPIService)
         mainVC.installViewModel(viewModel: menuViewModel)
         return mainVC
     }
 
-    func createDetailsViewModel(id: Int) -> UIViewController {
+    func createDetailsView(id: Int) -> UIViewController {
         let detailsVC = DetailViewController()
         let movieAPIService = MovieAPIService()
         let detailsViewModel = DetailViewModel(networkService: movieAPIService, id: id)

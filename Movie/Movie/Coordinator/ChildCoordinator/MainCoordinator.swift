@@ -22,7 +22,7 @@ final class MainCoordinator: BaseCoordinator {
     }
 
     private func showMainModule() {
-        guard let menuVC = assambly.createMenuViewModel() as? MainViewController else { return }
+        guard let menuVC = assambly.createMenuView() as? MainViewController else { return }
         menuVC.onSelectID = { [weak self] movieID in
             self?.showDetailsModule(movieID: movieID)
         }
@@ -37,7 +37,7 @@ final class MainCoordinator: BaseCoordinator {
     }
 
     private func showDetailsModule(movieID: Int) {
-        let detailVC = assambly.createDetailsViewModel(id: movieID)
+        let detailVC = assambly.createDetailsView(id: movieID)
         navController?.pushViewController(detailVC, animated: true)
     }
 }
