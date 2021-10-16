@@ -12,5 +12,7 @@ class DataBaseRepository<DataBaseEntity>: RepositoryProtocol {
 
     func saveData(object: [DataBaseEntity]) {
         fatalError("Override required")
+
+        
     }
 }
