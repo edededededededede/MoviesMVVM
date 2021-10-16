@@ -22,7 +22,6 @@ final class Assambly: AssamblyProtocol {
     func createDetailsView(id: Int) -> UIViewController {
         let detailsVC = DetailViewController()
         let movieAPIService = MovieAPIService()
-        // let repository = RealmRepository<Details>()
         let detailsViewModel = DetailViewModel(networkService: movieAPIService, id: id)
         detailsVC.installViewModel(viewModel: detailsViewModel)
         return detailsVC
