@@ -8,16 +8,22 @@ protocol MoviesViewModelProtocol: AnyObject {
     var updateViewData: (() -> ())? { get set }
     func fetchData()
     var networkService: NetworkServiceProtocol? { get set }
+    var movieAPIService: NetworkServiceProtocol? { get set }
+    var repository: DataBaseRepository<Results>? { get set }
 }
 
 final class MainViewModel: MoviesViewModelProtocol {
+    var movieAPIService: NetworkServiceProtocol?
+
+    var repository: DataBaseRepository<Results>?
+
     var networkService: NetworkServiceProtocol?
     var movies: Movies?
 
     var results: [Results]?
     var updateViewData: (() -> ())?
 
-    init(networkAPIService: NetworkServiceProtocol) {
+    init(networkAPIService: NetworkServiceProtocol, repository: DataBaseRepository<Results>) {
         networkService = networkAPIService
         fetchData()
     }
@@ -30,6 +36,7 @@ final class MainViewModel: MoviesViewModelProtocol {
                 switch result {
                 case let .success(movies):
                     self.results = movies
+                    self.repository?.saveData(object: movies)
                     self.updateViewData?()
                 case let .failure(error):
                     print(error)

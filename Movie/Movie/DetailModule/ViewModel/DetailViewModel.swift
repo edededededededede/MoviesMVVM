@@ -6,11 +6,15 @@ import Foundation
 protocol DetailViewModelProtocol: AnyObject {
     var details: Details? { get set }
     var updateViewData: (() -> ())? { get set }
+    var movieAPIService: NetworkServiceProtocol? { get set }
+    // var repository: DataBaseRepository<Details>? { get set }
     var showErrorAlert: StringHandler? { get set }
     func getDetail(id: Int)
 }
 
 final class DetailViewModel: DetailViewModelProtocol {
+    var movieAPIService: NetworkServiceProtocol?
+    // var repository: DataBaseRepository<Details>?
     var showErrorAlert: StringHandler?
     var updateViewData: (() -> ())?
     var details: Details?
@@ -20,6 +24,7 @@ final class DetailViewModel: DetailViewModelProtocol {
     init(networkService: MovieAPIService, id: Int) {
         self.networkService = networkService
         self.id = id
+        // self.repository = repository
         getDetail(id: id)
     }
 

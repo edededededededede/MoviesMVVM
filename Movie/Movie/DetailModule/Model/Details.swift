@@ -2,12 +2,13 @@
 // Copyright © RoadMap. All rights reserved.
 
 import Foundation
+import RealmSwift
 /// struct for Details
-struct Details: Decodable {
-    let id: Int?
-    let title: String?
-    let overview: String?
-    let posterPath: String?
+final class Details: Object, Decodable {
+    @objc dynamic var id = Int()
+    @objc dynamic var title: String?
+    @objc dynamic var overview: String?
+    @objc dynamic var posterPath: String?
 
     enum CodingKeys: String, CodingKey {
         case id
