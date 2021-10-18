@@ -23,6 +23,7 @@ final class MainViewController: UIViewController {
         title = "Movie"
         createTableView()
         updateView()
+        tableView.accessibilityIdentifier = "MovieTableView"
     }
 
     func updateView() {

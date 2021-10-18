@@ -16,6 +16,7 @@ final class DetailViewController: UIViewController {
         view.backgroundColor = .white
         createTableView()
         setupModel()
+        myTableView.accessibilityIdentifier = "DetailsTableView"
     }
 
     // MARK: - Methods
