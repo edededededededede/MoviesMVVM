@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -24,6 +24,14 @@
 		5C4074D62718BEF50013B0DD /* MainCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C4074D52718BEF50013B0DD /* MainCoordinator.swift */; };
 		5C4074D92718BFEB0013B0DD /* Assambly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C4074D82718BFEB0013B0DD /* Assambly.swift */; };
 		5C4074E2271966610013B0DD /* MovieTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C4074E1271966610013B0DD /* MovieTests.swift */; };
+		5C4074E92719A7930013B0DD /* CacheImageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C4074E82719A7930013B0DD /* CacheImageService.swift */; };
+		5C4074EC2719BB4C0013B0DD /* Proxy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C4074EB2719BB4C0013B0DD /* Proxy.swift */; };
+		5C4074EF2719C06A0013B0DD /* Realm in Frameworks */ = {isa = PBXBuildFile; productRef = 5C4074EE2719C06A0013B0DD /* Realm */; };
+		5C4074F12719C06A0013B0DD /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 5C4074F02719C06A0013B0DD /* RealmSwift */; };
+		5C4074F32719C0CF0013B0DD /* ImageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C4074F22719C0CE0013B0DD /* ImageService.swift */; };
+		5C4074F52719C2220013B0DD /* DataBaseRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C4074F42719C2220013B0DD /* DataBaseRepository.swift */; };
+		5C4074F72719C2DB0013B0DD /* RealmRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C4074F62719C2DB0013B0DD /* RealmRepository.swift */; };
+		5C4074F92719C8090013B0DD /* RepositoryProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C4074F82719C8090013B0DD /* RepositoryProtocol.swift */; };
 		5CC83C942715B0370047CC46 /* MainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CC83C932715B0370047CC46 /* MainViewModel.swift */; };
 		5CC83CBA2716D9270047CC46 /* DetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CC83CB92716D9270047CC46 /* DetailViewModel.swift */; };
 		5CC83CBC2716DFE60047CC46 /* MovieAPIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CC83CBB2716DFE60047CC46 /* MovieAPIService.swift */; };
@@ -62,6 +70,12 @@
 		5C4074D82718BFEB0013B0DD /* Assambly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Assambly.swift; sourceTree = "<group>"; };
 		5C4074DF271966610013B0DD /* MovieTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MovieTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		5C4074E1271966610013B0DD /* MovieTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieTests.swift; sourceTree = "<group>"; };
+		5C4074E82719A7930013B0DD /* CacheImageService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CacheImageService.swift; sourceTree = "<group>"; };
+		5C4074EB2719BB4C0013B0DD /* Proxy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Proxy.swift; sourceTree = "<group>"; };
+		5C4074F22719C0CE0013B0DD /* ImageService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageService.swift; sourceTree = "<group>"; };
+		5C4074F42719C2220013B0DD /* DataBaseRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataBaseRepository.swift; sourceTree = "<group>"; };
+		5C4074F62719C2DB0013B0DD /* RealmRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmRepository.swift; sourceTree = "<group>"; };
+		5C4074F82719C8090013B0DD /* RepositoryProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoryProtocol.swift; sourceTree = "<group>"; };
 		5CC83C932715B0370047CC46 /* MainViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewModel.swift; sourceTree = "<group>"; };
 		5CC83CB92716D9270047CC46 /* DetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewModel.swift; sourceTree = "<group>"; };
 		5CC83CBB2716DFE60047CC46 /* MovieAPIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieAPIService.swift; sourceTree = "<group>"; };
@@ -74,6 +88,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5C4074F12719C06A0013B0DD /* RealmSwift in Frameworks */,
+				5C4074EF2719C06A0013B0DD /* Realm in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -167,6 +183,16 @@
 			path = MovieTests;
 			sourceTree = "<group>";
 		};
+		5C4074EA2719BB340013B0DD /* Repositiry */ = {
+			isa = PBXGroup;
+			children = (
+				5C4074F42719C2220013B0DD /* DataBaseRepository.swift */,
+				5C4074F62719C2DB0013B0DD /* RealmRepository.swift */,
+				5C4074F82719C8090013B0DD /* RepositoryProtocol.swift */,
+			);
+			path = Repositiry;
+			sourceTree = "<group>";
+		};
 		5CC83C8F2715AF5B0047CC46 /* MainModule */ = {
 			isa = PBXGroup;
 			children = (
@@ -240,8 +266,12 @@
 		5CC83CBD2716DFEB0047CC46 /* APIService */ = {
 			isa = PBXGroup;
 			children = (
+				5C4074EA2719BB340013B0DD /* Repositiry */,
 				5CC83CBB2716DFE60047CC46 /* MovieAPIService.swift */,
 				5CC83CBE271763DE0047CC46 /* ImageAPIService.swift */,
+				5C4074E82719A7930013B0DD /* CacheImageService.swift */,
+				5C4074EB2719BB4C0013B0DD /* Proxy.swift */,
+				5C4074F22719C0CE0013B0DD /* ImageService.swift */,
 			);
 			path = APIService;
 			sourceTree = "<group>";
@@ -265,6 +295,8 @@
 			);
 			name = Movie;
 			packageProductDependencies = (
+				5C4074EE2719C06A0013B0DD /* Realm */,
+				5C4074F02719C06A0013B0DD /* RealmSwift */,
 			);
 			productName = Movie;
 			productReference = 5C2596F626AED3C900F801BB /* Movie.app */;
@@ -316,6 +348,7 @@
 			);
 			mainGroup = 5C2596ED26AED3C900F801BB;
 			packageReferences = (
+				5C4074ED2719C06A0013B0DD /* XCRemoteSwiftPackageReference "realm-cocoa" */,
 			);
 			productRefGroup = 5C2596F726AED3C900F801BB /* Products */;
 			projectDirPath = "";
@@ -391,15 +424,19 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5C4074F52719C2220013B0DD /* DataBaseRepository.swift in Sources */,
 				5C4074D62718BEF50013B0DD /* MainCoordinator.swift in Sources */,
 				5C2596FE26AED3C900F801BB /* MainViewController.swift in Sources */,
 				5C2596FA26AED3C900F801BB /* AppDelegate.swift in Sources */,
 				5C3E20C726B1CA50001D834C /* Movies.swift in Sources */,
+				5C4074F92719C8090013B0DD /* RepositoryProtocol.swift in Sources */,
+				5C4074EC2719BB4C0013B0DD /* Proxy.swift in Sources */,
 				5CC83CBA2716D9270047CC46 /* DetailViewModel.swift in Sources */,
 				5CC83C942715B0370047CC46 /* MainViewModel.swift in Sources */,
 				5C3E20CB26B282B5001D834C /* DetailViewController.swift in Sources */,
 				5C4074D92718BFEB0013B0DD /* Assambly.swift in Sources */,
 				5CC83CBF271763DE0047CC46 /* ImageAPIService.swift in Sources */,
+				5C4074E92719A7930013B0DD /* CacheImageService.swift in Sources */,
 				5CC83CBC2716DFE60047CC46 /* MovieAPIService.swift in Sources */,
 				5C4074A2271835360013B0DD /* UIViewControler+Extension.swift in Sources */,
 				5C3E20CD26B326B7001D834C /* InfoTableViewCell.swift in Sources */,
@@ -407,8 +444,10 @@
 				5C3E20C926B1D8B1001D834C /* MyTableViewCell.swift in Sources */,
 				5CD1478426B41D5400F57B12 /* Details.swift in Sources */,
 				5C4074A4271835CA0013B0DD /* Typeliases.swift in Sources */,
+				5C4074F72719C2DB0013B0DD /* RealmRepository.swift in Sources */,
 				5C4074D42718BEDD0013B0DD /* AplicationCoordinator.swift in Sources */,
 				5C2596FC26AED3C900F801BB /* SceneDelegate.swift in Sources */,
+				5C4074F32719C0CF0013B0DD /* ImageService.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -685,6 +724,30 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		5C4074ED2719C06A0013B0DD /* XCRemoteSwiftPackageReference "realm-cocoa" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/realm/realm-cocoa.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		5C4074EE2719C06A0013B0DD /* Realm */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 5C4074ED2719C06A0013B0DD /* XCRemoteSwiftPackageReference "realm-cocoa" */;
+			productName = Realm;
+		};
+		5C4074F02719C06A0013B0DD /* RealmSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 5C4074ED2719C06A0013B0DD /* XCRemoteSwiftPackageReference "realm-cocoa" */;
+			productName = RealmSwift;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 5C2596EE26AED3C900F801BB /* Project object */;
 }
