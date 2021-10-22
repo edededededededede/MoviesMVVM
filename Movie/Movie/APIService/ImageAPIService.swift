@@ -14,9 +14,9 @@ final class ImageAPIService: ImageAPIServiceProtocol {
             guard let data = data,
                   let image = UIImage(data: data) else { return }
 
-            DispatchQueue.main.async {
-                completion(.success(image))
-            }
+            //  DispatchQueue.main.async {
+            completion(.success(image))
+            // }
 
         }.resume()
     }

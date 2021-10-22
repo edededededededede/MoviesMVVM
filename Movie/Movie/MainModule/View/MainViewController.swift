@@ -7,7 +7,7 @@ import UIKit
 final class MainViewController: UIViewController {
     // MARK: - Private Properties
 
-    var viewModel: MoviesViewModelProtocol!
+    var viewModel: MoviesViewModelProtocol?
     var onSelectID: IntHandler?
 
     private var tableView = UITableView()
@@ -16,6 +16,11 @@ final class MainViewController: UIViewController {
     private var titleLabel: String?
     private var imageString: String?
     private var overviewLabel: String?
+
+    convenience init(viewModel: MoviesViewModelProtocol) {
+        self.init()
+        self.viewModel = viewModel
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,15 +32,11 @@ final class MainViewController: UIViewController {
     }
 
     func updateView() {
-        viewModel.updateViewData = { [weak self] in
+        viewModel?.updateViewData = { [weak self] in
             DispatchQueue.main.async {
                 self?.tableView.reloadData()
             }
         }
-    }
-
-    func installViewModel(viewModel: MoviesViewModelProtocol) {
-        self.viewModel = viewModel
     }
 
     // MARK: - create Private Medoth
@@ -56,26 +57,20 @@ extension MainViewController: UITableViewDelegate {
     }
 
     func tableView(_: UITableView, didSelectRowAt indexPath: IndexPath) {
-        guard let id = viewModel.results?[indexPath.row].id else { return }
-        let networkService = MovieAPIService()
-        let newVC = DetailViewController()
-        let detailViewModel = DetailViewModel(networkService: networkService, id: id)
-        newVC.installViewModel(viewModel: detailViewModel)
-        let assembly = Assambly()
-        navigationController?.pushViewController(assembly.createDetailsView(id: id), animated: true)
+        guard let id = viewModel?.results?[indexPath.row].id else { return }
         onSelectID?(id)
     }
 }
 
 extension MainViewController: UITableViewDataSource {
     func tableView(_: UITableView, numberOfRowsInSection _: Int) -> Int {
-        viewModel.results?.count ?? 0
+        viewModel?.results?.count ?? 0
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: identifire) as? MyTableViewCell
         else { return UITableViewCell() }
-        guard let movie = viewModel.results?[indexPath.row] else { return UITableViewCell() }
+        guard let movie = viewModel?.results?[indexPath.row] else { return UITableViewCell() }
         cell.configur(movie: movie)
         return cell
     }

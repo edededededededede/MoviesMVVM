@@ -3,37 +3,30 @@
 
 import UIKit
 
-protocol BaseCoordinatorProtocol {
-    var childCoordinators: [BaseCoordinator] { get set }
+protocol BaseCoordinatorProtocol: AnyObject {
+    var childCoordinators: [BaseCoordinatorProtocol] { get set }
     func start()
-    func addDependency(_ coordinator: BaseCoordinator)
-    func removeDependency(_ coordinator: BaseCoordinator?)
+    func addDependency(_ coordinator: BaseCoordinatorProtocol)
+    func removeDependency(_ coordinator: BaseCoordinatorProtocol?)
     func setAsRoot(_ controller: UIViewController)
 }
 
-/// rkfcc
-class BaseCoordinator: BaseCoordinatorProtocol {
-    // MARK: - Public Properties
-
-    var childCoordinators: [BaseCoordinator] = []
-
-    required init(assambly _: AssamblyProtocol, navController _: UINavigationController? = nil) {}
-
-    // MARK: - Public functions
-
+extension BaseCoordinatorProtocol {
     func start() {}
 
-    func addDependency(_ coordinator: BaseCoordinator) {
+    func addDependency(_ coordinator: BaseCoordinatorProtocol) {
         for element in childCoordinators where element === coordinator {
             return
         }
         childCoordinators.append(coordinator)
     }
 
-    func removeDependency(_ coordinator: BaseCoordinator?) {
-        guard !childCoordinators.isEmpty,
-              let coordinator = coordinator
+    func removeDependency(_ coordinator: BaseCoordinatorProtocol?) {
+        guard
+            childCoordinators.isEmpty == false,
+            let coordinator = coordinator
         else { return }
+
         for (index, element) in childCoordinators.reversed().enumerated() where element === coordinator {
             childCoordinators.remove(at: index)
             break
@@ -41,12 +34,6 @@ class BaseCoordinator: BaseCoordinatorProtocol {
     }
 
     func setAsRoot(_ controller: UIViewController) {
-        let keyWindow = UIApplication
-            .shared
-            .connectedScenes
-            .flatMap { ($0 as? UIWindowScene)?.windows ?? [] }
-            .first { $0.isKeyWindow }
-
-        keyWindow?.rootViewController = controller
+        UIApplication.shared.keyWindow?.rootViewController = controller
     }
 }

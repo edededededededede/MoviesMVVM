@@ -32,16 +32,16 @@ final class MainViewModel: MoviesViewModelProtocol {
         networkService = MovieAPIService()
         networkService?.getMovies { [weak self] result in
             guard let self = self else { return }
-            DispatchQueue.main.async {
-                switch result {
-                case let .success(movies):
-                    self.results = movies
-                    self.repository?.saveData(object: movies)
-                    self.updateViewData?()
-                case let .failure(error):
-                    print(error)
-                }
+            // DispatchQueue.main.async {
+            switch result {
+            case let .success(movies):
+                self.results = movies
+                self.repository?.saveData(object: movies)
+                self.updateViewData?()
+            case let .failure(error):
+                print(error)
             }
+            // }
         }
     }
 }
