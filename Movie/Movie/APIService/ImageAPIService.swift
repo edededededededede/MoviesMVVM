@@ -13,11 +13,7 @@ final class ImageAPIService: ImageAPIServiceProtocol {
         URLSession.shared.dataTask(with: url) { data, _, _ in
             guard let data = data,
                   let image = UIImage(data: data) else { return }
-
-            //  DispatchQueue.main.async {
             completion(.success(image))
-            // }
-
         }.resume()
     }
 }

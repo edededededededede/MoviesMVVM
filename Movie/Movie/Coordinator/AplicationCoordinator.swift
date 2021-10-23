@@ -4,17 +4,11 @@
 import UIKit
 
 final class ApplicationCoordinator: BaseCoordinatorProtocol {
-    // MARK: - Public Variables
-
     var childCoordinators: [BaseCoordinatorProtocol] = []
-
-    // MARK: - Public Methods
 
     func start() {
         toMovies()
     }
-
-    // MARK: - Private Methods
 
     private func toMovies() {
         let assembly = Assambly()

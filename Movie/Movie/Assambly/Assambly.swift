@@ -15,8 +15,6 @@ final class Assambly: AssamblyProtocol {
         let movieAPIService = MovieAPIService()
         let menuViewModel = MainViewModel(networkAPIService: movieAPIService, repository: repository)
         let mainVC = MainViewController(viewModel: menuViewModel)
-//        let viewModel = MainViewModel(networkAPIService: movieAPIService, repository: repository)
-        // mainVC.installViewModel(viewModel: menuViewModel)
         return mainVC
     }
 
@@ -25,7 +23,6 @@ final class Assambly: AssamblyProtocol {
         let movieAPIService = MovieAPIService()
         let detailsViewModel = DetailViewModel(networkService: movieAPIService, repository: repository, id: id)
         let detailsVC = DetailViewController(viewModel: detailsViewModel)
-        // detailsVC.installViewModel(viewModel: detailsViewModel)
         return detailsVC
     }
 }

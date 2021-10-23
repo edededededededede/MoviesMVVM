@@ -32,7 +32,6 @@ final class MainViewModel: MoviesViewModelProtocol {
         networkService = MovieAPIService()
         networkService?.getMovies { [weak self] result in
             guard let self = self else { return }
-            // DispatchQueue.main.async {
             switch result {
             case let .success(movies):
                 self.results = movies
@@ -41,7 +40,6 @@ final class MainViewModel: MoviesViewModelProtocol {
             case let .failure(error):
                 print(error)
             }
-            // }
         }
     }
 }
