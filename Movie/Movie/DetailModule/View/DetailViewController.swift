@@ -11,26 +11,31 @@ final class DetailViewController: UIViewController {
     private var myTableView = UITableView()
     private let identifire = "Mycell"
 
+    convenience init(viewModel: DetailViewModelProtocol) {
+        self.init()
+        self.viewModel = viewModel
+    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
         createTableView()
         setupModel()
+        myTableView.accessibilityIdentifier = "DetailsTableView"
     }
 
     // MARK: - Methods
 
     func setupModel() {
         viewModel?.updateViewData = { [weak self] in
-            self?.myTableView.reloadData()
+            DispatchQueue.main.async {
+                self?.myTableView.reloadData()
+            }
         }
+
         viewModel?.showErrorAlert = { [weak self] error in
             self?.showAlert(alertText: "error", alertMessage: error)
         }
-    }
-
-    func installViewModel(viewModel: DetailViewModelProtocol) {
-        self.viewModel = viewModel
     }
 
     // MARK: - Private Methods

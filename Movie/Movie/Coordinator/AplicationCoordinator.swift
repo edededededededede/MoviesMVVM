@@ -3,28 +3,18 @@
 
 import UIKit
 
-final class AplicationCoordinator: BaseCoordinator {
-    // MARK: - private properties
+final class ApplicationCoordinator: BaseCoordinatorProtocol {
+    var childCoordinators: [BaseCoordinatorProtocol] = []
 
-    private var assambly: AssamblyProtocol
-    private var navigationController: UINavigationController?
-
-    required init(assambly: AssamblyProtocol, navController: UINavigationController? = nil) {
-        navigationController = navController
-        self.assambly = assambly
-        super.init(assambly: assambly, navController: navigationController)
+    func start() {
+        toMovies()
     }
 
-    // MARK: - ApplicationCoordinator
+    private func toMovies() {
+        let assembly = Assambly()
+        let navigationController = UINavigationController()
+        let coordinator = MovieCoordinator(navigationController: navigationController, assembly: assembly)
 
-    override func start() {
-        toMenu()
-    }
-
-    // MARK: - Private methods
-
-    private func toMenu() {
-        let coordinator = MainCoordinator(assambly: assambly, navController: navigationController)
         coordinator.onFinishFlow = { [weak self, weak coordinator] in
             self?.removeDependency(coordinator)
             self?.start()

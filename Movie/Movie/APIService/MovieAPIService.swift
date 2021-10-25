@@ -5,7 +5,7 @@ import Foundation
 
 protocol NetworkServiceProtocol {
     func getMovies(complition: @escaping (Result<[Results], Error>) -> Void)
-    func getDetails(id: Int, complition: @escaping (Result<Details?, Error>) -> Void)
+    func getDetails(id: Int, complition: @escaping (Result<Details, Error>) -> Void)
 }
 
 final class MovieAPIService: NetworkServiceProtocol {
@@ -25,7 +25,7 @@ final class MovieAPIService: NetworkServiceProtocol {
         }.resume()
     }
 
-    func getDetails(id: Int, complition: @escaping (Result<Details?, Error>) -> Void) {
+    func getDetails(id: Int, complition: @escaping (Result<Details, Error>) -> Void) {
         let jsonUrlString =
             "https://api.themoviedb.org/3/movie/\(id)?api_key=1ee34276a75d38c0cae118c698cdcfdf&language=ru-Ru"
         guard let url = URL(string: jsonUrlString) else { return }
