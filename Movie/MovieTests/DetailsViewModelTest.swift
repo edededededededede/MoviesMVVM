@@ -12,7 +12,7 @@ final class DetailsViewModelTest: XCTestCase {
     override func setUpWithError() throws {
         repository = MockRepository<Details>()
         movieAPIService = MockMovieApiService()
-       // viewModel = DetailViewModel(networkService: movieAPIService, id: 0)
+        // viewModel = DetailViewModel(networkService: movieAPIService, id: 0)
     }
 
     override func tearDownWithError() throws {}
@@ -21,6 +21,6 @@ final class DetailsViewModelTest: XCTestCase {
         viewModel.updateViewData = {}
 
         guard let movie = viewModel.details else { return }
-        //XCTAssertTrue(movie.realm?.isEmpty)
+        // XCTAssertTrue(movie.realm?.isEmpty)
     }
 }
