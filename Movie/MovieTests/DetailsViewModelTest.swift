@@ -1,5 +1,5 @@
 // DetailsViewModelTest.swift
-// Copyright © RoadMap. All rights reserved.
+// Copyright © Edo. All rights reserved.
 
 @testable import Movie
 import XCTest
